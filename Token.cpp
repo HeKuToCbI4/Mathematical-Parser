@@ -2,16 +2,16 @@
 #include "Token.h"
 
 
-Token::Token(char c)
+Token::Token(const uint8_t &c)
 {
-	type = Operator;
-	value.op = c;
+	type = EOperator;
+	value = TokenValue(c);
 }
 
-Token::Token(double num)
+Token::Token(const double &num)
 {
-	type = Operand;
-	value.number = num;
+	type = EOperand;
+	value = TokenValue(num);
 }
 
 Token::~Token()

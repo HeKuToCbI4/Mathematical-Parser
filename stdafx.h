@@ -3,7 +3,7 @@
 #include "targetver.h"
 
 #include <stdio.h>
-#include <tchar.h>
+#include <tuint8_t.h>
 #include <string>
 #include <algorithm>
 #include <iostream>

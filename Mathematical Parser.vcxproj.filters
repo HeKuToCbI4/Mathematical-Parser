@@ -39,6 +39,12 @@
     <ClInclude Include="Evaluator.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="Operator.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="TokenValue.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -60,6 +66,12 @@
       <Filter>Заголовочные файлы\Файлы исходного кода</Filter>
     </ClCompile>
     <ClCompile Include="Evaluator.cpp">
+      <Filter>Заголовочные файлы\Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="Operator.cpp">
+      <Filter>Заголовочные файлы\Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="TokenValue.cpp">
       <Filter>Заголовочные файлы\Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>
