@@ -47,7 +47,7 @@ double Evaluator::Evaluate(const std::vector<Token>& tokens)
 	}
 	else
 	{
-		throw std::exception("Something gone wrong! Missing Operators!");
+		throw std::runtime_error("Something gone wrong! Missing Operators!");
 	}
 }
 

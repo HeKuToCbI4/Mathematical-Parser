@@ -168,7 +168,7 @@ std::vector<Token> Tokenizer::tokenize(const std::string& str)
 		}
 		if (state == err)
 		{
-			throw std::exception("Tokenizing error");
+			throw std::runtime_error("Tokenizing error");
 		}
 	}
 

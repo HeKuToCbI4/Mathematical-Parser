@@ -36,7 +36,7 @@ std::vector<Token> Converter::convert(const std::vector<Token>& expression)
 				}
 				else
 				{
-					throw std::exception("Error in converting to RPN. Missing parenthesis");
+					throw std::runtime_error("Error in converting to RPN. Missing parenthesis");
 				}
 			}
 			else
@@ -71,7 +71,7 @@ std::vector<Token> Converter::convert(const std::vector<Token>& expression)
 		}
 		else
 		{
-			throw std::exception("Error in converting to RPN. Missing parenthesis");
+			throw std::runtime_error("Error in converting to RPN. Missing parenthesis");
 		}
 	}
 	return result;

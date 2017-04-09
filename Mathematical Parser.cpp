@@ -37,7 +37,7 @@ int main()
 			printRPN(Converter::convert(tokenizer.tokenize(str)));
 			std::cout << "Result: " << Evaluator::Evaluate(Converter::convert(tokenizer.tokenize(str))) << std::endl;
 		}
-		catch (std::exception e)
+		catch (std::runtime_error e)
 		{
 			std::cout << e.what() << std::endl;
 		}
