@@ -83,7 +83,11 @@ double Tokenizer::parseDec(const std::string& str, size_t& pos)
 			state = op;
 		}
 		else
-
+		if (str[pos]=='.')
+		{
+			state = numDec;
+		}
+		else
 		{
 			state = err;
 		}
