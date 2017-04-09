@@ -7,7 +7,7 @@ class Converter
 {
 public: 
 	Converter();
-	std::vector<Token> convert(const std::vector<Token>& expression);
+	static std::vector<Token> convert(const std::vector<Token>& expression);
 	~Converter();
 };
 

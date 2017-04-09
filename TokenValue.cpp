@@ -15,6 +15,16 @@ TokenValue::TokenValue(const double& num): number(num), op()
 {
 }
 
+double TokenValue::getNumber() const
+{
+	return number;
+}
+
+Operator TokenValue::getOp() const
+{
+	return op;
+}
+
 TokenValue::TokenValue(const TokenValue& obj): number(obj.number), op(obj.op)
 {
 

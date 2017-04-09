@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Tokenizer.h"
 
-
+Tokenizer::State Tokenizer::state = Tokenizer::State::init;
 
 Token Tokenizer::parseNum(const std::string& str, size_t& pos)
 {
@@ -19,14 +19,14 @@ Token Tokenizer::parseNum(const std::string& str, size_t& pos)
 	{
 		number += parseDec(str, pos);
 	}
-	return Token(number);
+	return (neg) ? Token(-number) : Token(number);
 }
 
 int32_t Tokenizer::parseInt(const std::string& str, size_t& pos)
 {
 	int32_t result(0);
 	bool firstNum(true);
-	while (str[pos] >= '1' && str[pos] <= '0' && pos < str.length())
+	while (str[pos] >= '0' && str[pos] <= '9' && pos < str.length())
 	{
 		if (!firstNum)
 		{
@@ -94,28 +94,34 @@ double Tokenizer::parseDec(const std::string& str, size_t& pos)
 Token Tokenizer::parseOp(const std::string& str, size_t& pos)
 {
 	auto result = Token(str[pos]);
+	pos++;
 	if (pos == str.length())
 	{
 		state = fin;
-		return result;
-	}
-
-	pos++;
-	if (str[pos] >= '0' && str[pos] <= '9' || str[pos] == '.')
-	{
-		state = numDec;
 	}
 	else
-	{
-		state = err;
-	}
+		if (str[pos] >= '0' && str[pos] <= '9' || str[pos] == '.')
+		{
+			state = numDec;
+		}
+		else
+			if (str[pos-1] == ')' &&(str[pos] == '/' || str[pos] == '*' || str[pos] == '+'
+				|| str[pos] == '-') || str[pos]=='(')
+			{
+				state = op;
+			}
+			else
+			{
+				state = err;
+			}
 	return result;
 }
 
-double Tokenizer::pow10(const uint8_t& num, const uint8_t& power)
+double Tokenizer::pow10(const uint8_t& num, const int8_t& power)
 {
 	double res(num);
-	for (auto i(0); i < power; i++)
+	auto tmp = abs(power);
+	for (auto i(0); i < tmp; i++)
 	{
 		(power < 0) ? res /= 10 : res *= 10;
 	}
@@ -130,7 +136,7 @@ std::vector<Token> Tokenizer::tokenize(const std::string& str)
 	auto result = std::vector<Token>();
 	state = init;
 	size_t i(0);
-	while (state!=fin && state!=err)
+	while (state != fin && state != err && i < str.length())
 	{
 		if (state == init)
 		{
@@ -139,7 +145,7 @@ std::vector<Token> Tokenizer::tokenize(const std::string& str)
 				result.push_back(parseNum(str, i));
 			}
 			else
-				if (str[i]=='(')
+				if (str[i] == '(')
 				{
 					state = op;
 				}
@@ -148,7 +154,7 @@ std::vector<Token> Tokenizer::tokenize(const std::string& str)
 					state = err;
 				}
 		}
-		if (state==op)
+		if (state == op)
 		{
 			result.push_back(parseOp(str, i));
 		}
@@ -160,7 +166,7 @@ std::vector<Token> Tokenizer::tokenize(const std::string& str)
 		{
 			return result;
 		}
-		if (state==err)
+		if (state == err)
 		{
 			throw std::exception("Tokenizing error");
 		}

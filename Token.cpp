@@ -16,6 +16,16 @@ Token::Token(const Token& obj): type(obj.type), value(obj.value)
 {
 }
 
+TokenType Token::getType() const
+{
+	return type;
+}
+
+TokenValue Token::getValue() const
+{
+	return value;
+}
+
 Token& Token::operator=(const Token& obj)
 {
 	if (&obj == this)

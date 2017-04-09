@@ -7,8 +7,6 @@ enum TokenType
 };
 class Token
 {
-	
-	
 protected:
 	TokenType type;
 	TokenValue value;
@@ -16,6 +14,8 @@ public:
 	Token(const char &);
 	Token(const double &);
 	Token(const Token& obj);
+	TokenType getType() const;
+	TokenValue getValue() const;
 	Token& operator=(const Token& obj);
 	~Token();
 };

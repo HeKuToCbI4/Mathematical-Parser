@@ -2,10 +2,11 @@
 #include "Simplificator.h"
 
 
-
 Simplificator::Simplificator()
 {
 }
+
+
 
 void Simplificator::simplify(std::string &str) // stroka stroki sosi
 {

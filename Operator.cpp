@@ -29,11 +29,20 @@ Operator::Operator(const uint8_t &c) : symbol(c)
 		case '(':
 		case ')':
 		{
-			priority = 3;
+			priority = 0;
 		}
 	}
 }
 
+uint8_t Operator::getSymbol() const
+{
+	return symbol;
+}
+
+uint8_t Operator::getPriority() const
+{
+	return priority;
+}
 
 Operator::~Operator()
 {
