@@ -41,7 +41,14 @@ double Evaluator::Evaluate(const std::vector<Token>& tokens)
 			stack.push(doOperation(tmp1, tmp2, token));
 		}
 	}
-	return stack.top().getValue().getNumber();
+	if (stack.size() == 1)
+	{
+		return stack.top().getValue().getNumber();
+	}
+	else
+	{
+		throw std::exception("Something gone wrong! Missing Operators!");
+	}
 }
 
 Evaluator::~Evaluator()

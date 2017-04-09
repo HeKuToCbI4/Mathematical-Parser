@@ -64,8 +64,15 @@ std::vector<Token> Converter::convert(const std::vector<Token>& expression)
 	}
 	while (!stack.empty())
 	{
-		result.push_back(stack.top());
-		stack.pop();
+		if (stack.top().getValue().getOp().getSymbol() != '(')
+		{
+			result.push_back(stack.top());
+			stack.pop();
+		}
+		else
+		{
+			throw std::exception("Error in converting to RPN. Missing parenthesis");
+		}
 	}
 	return result;
 }
