@@ -1,13 +1,13 @@
 #pragma once
 #include "TokenValue.h"
-
+enum TokenType
+{
+	EOperator,
+	EOperand,
+};
 class Token
 {
-	enum TokenType
-	{
-		EOperator,
-		EOperand,
-	};
+	
 	
 protected:
 	TokenType type;
@@ -15,6 +15,7 @@ protected:
 public:
 	Token(const char &);
 	Token(const double &);
+	Token(const Token& obj);
+	Token& operator=(const Token& obj);
 	~Token();
 };
-

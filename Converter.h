@@ -1,8 +1,14 @@
 #pragma once
+
+#include "Token.h"
+#include <vector>
+
 class Converter
 {
-public: // Konstructori po umolchaniu, zdarova 
+public: 
 	Converter();
+	std::vector<Token> convert(const std::vector<Token>& expression);
 	~Converter();
 };
+
 
