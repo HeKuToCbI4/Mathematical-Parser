@@ -105,8 +105,8 @@ Token Tokenizer::parseOp(const std::string& str, size_t& pos)
 			state = numDec;
 		}
 		else
-			if (str[pos-1] == ')' && (str[pos] == '/' || str[pos] == '*' || str[pos] == '+'
-				|| str[pos] == '-') || str[pos]=='(')
+			if (str[pos] == '/' || str[pos] == '*' || str[pos] == '+'
+				|| str[pos] == '-' || str[pos] == '(' || str[pos] == ')')
 			{
 				state = op;
 			}
