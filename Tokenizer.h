@@ -23,7 +23,7 @@ protected:
 	static double pow10(const uint8_t& num, const uint8_t &power);
 public:
 	Tokenizer();
-	static std::vector<Token> tokenize(const std::string&);
+	std::vector<Token> tokenize(const std::string&);
 	~Tokenizer();
 };
 
