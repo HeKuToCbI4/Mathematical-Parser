@@ -13,7 +13,7 @@ protected:
 	TokenType type;
 	TokenValue value;
 public:
-	Token(const uint8_t &);
+	Token(const char &);
 	Token(const double &);
 	~Token();
 };

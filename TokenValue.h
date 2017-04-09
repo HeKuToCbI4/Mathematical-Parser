@@ -8,9 +8,8 @@ protected:
 	Operator op;
 public:
 	TokenValue();
-	explicit TokenValue(const uint8_t &c);
+	explicit TokenValue(const char &c);
 	explicit TokenValue(const double &num);
 	TokenValue(const TokenValue&);
 	~TokenValue();
 };
-

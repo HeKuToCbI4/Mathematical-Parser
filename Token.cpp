@@ -2,7 +2,7 @@
 #include "Token.h"
 
 
-Token::Token(const uint8_t &c)
+Token::Token(const char &c)
 {
 	type = EOperator;
 	value = TokenValue(c);

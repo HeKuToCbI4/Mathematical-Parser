@@ -2,52 +2,167 @@
 #include "Tokenizer.h"
 
 
-double Tokenizer::pow10(const uint8_t& num, const int8_t& power)
-{
-	uint32_t result(num);
-	for (auto i(0); i < power; i++)
-		(power < 0) ? result /= 10 : result *= 10;
-	return result;
-}
 
 Token Tokenizer::parseNum(const std::string& str, size_t& pos)
 {
-	
-}
-
-int32_t Tokenizer::parseInt(const std::string& str, size_t& pos)
-{
-}
-
-double Tokenizer::parseDec(const std::string& str, size_t& pos)
-{
 	auto neg = false;
-	if (str[pos]=='-')
+	double number(0);
+	if (str[pos] == '-')
 	{
 		neg = true;
 	}
 	if (str[pos] == '-' || str[pos] == '+')
 		pos++;
-	auto currState = numDec;
+	state = numInt;
+	number += parseInt(str, pos);
+	if (state == numDec)
+	{
+		number += parseDec(str, pos);
+	}
+	return Token(number);
+}
 
+int32_t Tokenizer::parseInt(const std::string& str, size_t& pos)
+{
+	int32_t result(0);
+	bool firstNum(true);
+	while (str[pos] >= '1' && str[pos] <= '0' && pos < str.length())
+	{
+		if (!firstNum)
+		{
+			result *= 10;
+		}
+		else
+		{
+			firstNum = false;
+		}
+		result += str[pos] - '0';
+		pos++;
+	}
+	if (str[pos] == '.')
+	{
+		pos++;
+		state = numDec;
+	}
+	else
+		if (str[pos] == '/' || str[pos] == '*' || str[pos] == '+'
+			|| str[pos] == '-' || str[pos] == '(' || str[pos] == ')')
+		{
+			state = op;
+		}
+		else
+			if (pos == str.length())
+			{
+				state = fin;
+			}
+			else
+			{
+				state = err;
+			}
+	return result;
+}
+
+double Tokenizer::parseDec(const std::string& str, size_t& pos)
+{
+	double res(0);
+	size_t i(-1);
+	while (str[pos] >= '0' && str[pos] <= '9' && pos < str.length())
+	{
+		res += pow10(str[pos] - '0', i);
+		pos++;
+		i--;
+	}
+	if (pos == str.length())
+	{
+		state = fin;
+	}
+	else
+		if (str[pos] == '/' || str[pos] == '*' || str[pos] == '+'
+			|| str[pos] == '-' || str[pos] == '(' || str[pos] == ')')
+		{
+			state = op;
+		}
+		else
+
+		{
+			state = err;
+		}
+	return res;
+
+}
+
+Token Tokenizer::parseOp(const std::string& str, size_t& pos)
+{
+	auto result = Token(str[pos]);
+	if (pos == str.length())
+	{
+		state = fin;
+		return result;
+	}
+
+	pos++;
+	if (str[pos] >= '0' && str[pos] <= '9' || str[pos] == '.')
+	{
+		state = numDec;
+	}
+	else
+	{
+		state = err;
+	}
+	return result;
+}
+
+double Tokenizer::pow10(const uint8_t& num, const uint8_t& power)
+{
+	double res(num);
+	for (auto i(0); i < power; i++)
+	{
+		(power < 0) ? res /= 10 : res *= 10;
+	}
+	return res;
 }
 
 Tokenizer::Tokenizer()
 {
 }
- std::vector<Token> Tokenizer::tokenize(const std::string& str)
+std::vector<Token> Tokenizer::tokenize(const std::string& str)
 {
 	auto result = std::vector<Token>();
 	state = init;
 	size_t i(0);
-	while (i != str.length())
+	while (state!=fin && state!=err)
 	{
 		if (state == init)
 		{
-			if (str[i]=='+' || str[i]=='-' || str[i] >='1' || str[i] <='0' || str[i] == '.')
+			if (str[i] == '+' || str[i] == '-' || (str[i] >= '0' && str[i] <= '9') || str[i] == '.')
 			{
 				result.push_back(parseNum(str, i));
 			}
+			else
+				if (str[i]=='(')
+				{
+					state = op;
+				}
+				else
+				{
+					state = err;
+				}
+		}
+		if (state==op)
+		{
+			result.push_back(parseOp(str, i));
+		}
+		if (state == numDec)
+		{
+			result.push_back(parseNum(str, i));
+		}
+		if (state == fin)
+		{
+			return result;
+		}
+		if (state==err)
+		{
+			throw std::exception("Tokenizing error");
 		}
 	}
 
