@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "Token.h"
 
+Token::Token():type(EOperand), value(TokenValue(0.0))
+{
+}
 
 Token::Token(const char &c)
 {

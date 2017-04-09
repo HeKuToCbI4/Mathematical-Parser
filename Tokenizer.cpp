@@ -175,7 +175,6 @@ std::vector<Token> Tokenizer::tokenize(const std::string& str)
 			throw std::runtime_error("Tokenizing error");
 		}
 	}
-
 }
 
 Tokenizer::~Tokenizer()

@@ -1,12 +1,9 @@
 #include "stdafx.h"
 #include "Simplificator.h"
 
-
 Simplificator::Simplificator()
 {
 }
-
-
 
 void Simplificator::simplify(std::string &str) // stroka stroki sosi
 {
@@ -26,14 +23,6 @@ void Simplificator::simplify(std::string &str) // stroka stroki sosi
 		if (str.find(mm) != std::string::npos)
 			str.replace(str.find(mm), 2, "+");
 	}
-		
-	
-
-	/*std::replace(str.begin(), str.end(), std::string("++"), std::string("+"));
-	std::replace(str.begin(), str.end(), std::string("--"), std::string("-"));
-	std::replace(str.begin(), str.end(), std::string("+-"), std::string("-"));
-	std::replace(str.begin(), str.end(), std::string("-+"), std::string("-"));*/
-	
 }
 
 Simplificator::~Simplificator()

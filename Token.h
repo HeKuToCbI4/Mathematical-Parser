@@ -11,6 +11,7 @@ protected:
 	TokenType type;
 	TokenValue value;
 public:
+	Token();
 	Token(const char &);
 	Token(const double &);
 	Token(const Token& obj);

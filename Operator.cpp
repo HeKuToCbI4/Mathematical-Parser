@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "Operator.h"
 
-
 Operator::Operator(): priority(0), symbol(0)
 {
 }
