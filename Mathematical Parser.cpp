@@ -1,6 +1,3 @@
-// Mathematical Parser.cpp: определяет точку входа для консольного приложения.
-//
-
 #include "stdafx.h"
 #include "Simplificator.h"
 #include <vector>

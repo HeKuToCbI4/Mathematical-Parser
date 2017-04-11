@@ -2,7 +2,7 @@
 #include "TokenValue.h"
 
 
-TokenValue::TokenValue(): op(), number(0)
+TokenValue::TokenValue(): number(0), op()
 {
 }
 
