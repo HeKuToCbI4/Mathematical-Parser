@@ -1,5 +1,4 @@
 #pragma once
-#include <vector>
 #include "Token.h"
 
 class Tokenizer
@@ -10,18 +9,20 @@ class Tokenizer
 		err,
 		numInt,
 		numDec,
-		op
+		op,
+		fin
 	};
 
 protected:
 	static State state;
-	double pow10(const uint8_t&, const int8_t&);
 	Token parseNum(const std::string&, size_t&);
-	int32_t parseInt(const std::string&, size_t&);
-	double parseDec(const std::string&, size_t&);
+	static int32_t parseInt(const std::string&, size_t&);
+	static double parseDec(const std::string&, size_t&);
+	static Token parseOp(const std::string&, size_t&);
+	static double pow10(const uint8_t& num, const int8_t &power);
 public:
 	Tokenizer();
-	static std::vector<Token> tokenize(const std::string&);
+	std::vector<Token> tokenize(const std::string&);
 	~Tokenizer();
 };
 

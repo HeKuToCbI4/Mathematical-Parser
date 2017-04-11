@@ -6,7 +6,7 @@ TokenValue::TokenValue(): op(), number(0)
 {
 }
 
-TokenValue::TokenValue(const uint8_t& c): number(0), op(c)
+TokenValue::TokenValue(const char& c): number(0), op(c)
 {
 
 }
@@ -15,7 +15,17 @@ TokenValue::TokenValue(const double& num): number(num), op()
 {
 }
 
-TokenValue::TokenValue(const TokenValue& obj): op(obj.op), number(obj.number)
+double TokenValue::getNumber() const
+{
+	return number;
+}
+
+Operator TokenValue::getOp() const
+{
+	return op;
+}
+
+TokenValue::TokenValue(const TokenValue& obj): number(obj.number), op(obj.op)
 {
 
 }

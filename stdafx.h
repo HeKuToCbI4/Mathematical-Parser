@@ -1,9 +1,10 @@
 #pragma once
 
 #include "targetver.h"
-
+#include <stack>
 #include <stdio.h>
-#include <tuint8_t.h>
+#include <exception>
 #include <string>
 #include <algorithm>
 #include <iostream>
+#include <vector>

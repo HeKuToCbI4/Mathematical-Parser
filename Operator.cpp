@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "Operator.h"
 
-
 Operator::Operator(): priority(0), symbol(0)
 {
 }
@@ -29,11 +28,20 @@ Operator::Operator(const uint8_t &c) : symbol(c)
 		case '(':
 		case ')':
 		{
-			priority = 3;
+			priority = 0;
 		}
 	}
 }
 
+uint8_t Operator::getSymbol() const
+{
+	return symbol;
+}
+
+uint8_t Operator::getPriority() const
+{
+	return priority;
+}
 
 Operator::~Operator()
 {
