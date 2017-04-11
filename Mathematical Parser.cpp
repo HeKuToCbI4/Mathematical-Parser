@@ -35,7 +35,7 @@ int main()
 		try
 		{
 			printRPN(Converter::convert(tokenizer.tokenize(str)));
-			std::cout << "Result: " << Evaluator::Evaluate(Converter::convert(tokenizer.tokenize(str))) << std::endl;
+			std::cout << "Result: " << std::round(Evaluator::Evaluate(Converter::convert(tokenizer.tokenize(str)))*1000)/1000 << std::endl;
 		}
 		catch (std::runtime_error e)
 		{
