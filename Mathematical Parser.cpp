@@ -39,7 +39,6 @@ int main()
 			std::cout << e.what() << std::endl;
 		}
 	} while (str != "exit");
-	system("pause");
     return 0;
 }
 

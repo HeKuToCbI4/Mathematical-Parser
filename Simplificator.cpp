@@ -1,12 +1,16 @@
 #include "stdafx.h"
+#include <cctype>
 #include "Simplificator.h"
 
 Simplificator::Simplificator()
 {
 }
 
+
+
 void Simplificator::simplify(std::string &str) 
 {
+//	str.erase(remove_if(str.begin(), str.end(), ' '));
 	std::string pp = "++";
 	std::string mm = "--";
 	std::string pm = "+-";
