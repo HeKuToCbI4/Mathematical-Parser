@@ -5,9 +5,9 @@ Simplificator::Simplificator()
 {
 }
 
-void Simplificator::simplify(std::string &str) // stroka stroki sosi
+void Simplificator::simplify(std::string &str) 
 {
-	std::string pp = "++"; // ebal tebya za takie peremennii 
+	std::string pp = "++";
 	std::string mm = "--";
 	std::string pm = "+-";
 	std::string mp = "-+";
@@ -18,7 +18,7 @@ void Simplificator::simplify(std::string &str) // stroka stroki sosi
 		str.erase(str.find(mp) + 1, 1);
 		if (str.find(pm) != std::string::npos)
 		str.erase(str.find(pm), 1);
-		if (str.find(pp) != std::string::npos) // pp.end()?
+		if (str.find(pp) != std::string::npos) 
 			str.erase(str.find(pp), 1);
 		if (str.find(mm) != std::string::npos)
 			str.replace(str.find(mm), 2, "+");

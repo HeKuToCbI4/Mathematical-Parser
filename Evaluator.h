@@ -5,7 +5,7 @@
 class Evaluator
 {
 	static Token doOperation(const Token& left, const Token& right, const Token& operation);
-public: // Konstructori po umolchaniu, zdarova 
+public: 
 	Evaluator();
 	static double Evaluate(const std::vector<Token>& tokens);
 	~Evaluator();
